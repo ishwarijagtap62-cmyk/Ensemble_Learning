@@ -1,0 +1,273 @@
+{
+  "versions": {
+    "python": "3.14.2",
+    "sklearn": "1.8.0",
+    "pandas": "2.3.3",
+    "numpy": "2.4.1",
+    "seaborn": "0.13.2",
+    "matplotlib": "3.10.8"
+  },
+  "self_tests": [
+    {
+      "id": "TC1",
+      "status": "Pass",
+      "actual": "X shape (569, 30); 569 labels; malignant=212, benign=357"
+    },
+    {
+      "id": "TC2",
+      "status": "Pass",
+      "actual": "0 missing values; train=455, test=114; malignant share 37.36% (train) vs 36.84% (test); scaler inside Pipeline"
+    },
+    {
+      "id": "TC3",
+      "status": "Pass",
+      "actual": "Logistic Regression acc=0.9825; Decision Tree acc=0.9211; SVM (RBF) acc=0.9825"
+    },
+    {
+      "id": "TC4",
+      "status": "Pass",
+      "actual": "3 base models + LogisticRegression meta-classifier; 5-fold out-of-fold predictions; acc=0.9737"
+    },
+    {
+      "id": "TC5",
+      "status": "Pass",
+      "actual": "100 weak learners fitted (max_depth=1 stumps); params={'learning_rate': 1.0, 'n_estimators': 100}; acc=0.9561"
+    },
+    {
+      "id": "TC6",
+      "status": "Pass",
+      "actual": "Hard voting acc=0.9825; Soft voting acc=0.9737; probability rows sum to 1"
+    },
+    {
+      "id": "TC7",
+      "status": "Pass",
+      "actual": "All four metrics lie in [0, 1]; accuracy recomputed from each confusion matrix equals accuracy_score"
+    },
+    {
+      "id": "TC8",
+      "status": "Pass",
+      "actual": "7 matrices of shape (2, 2); each sums to 114 test samples"
+    },
+    {
+      "id": "TC9",
+      "status": "Pass",
+      "actual": "Comparison table with 7 models and 3 figures saved"
+    }
+  ],
+  "dataset": {
+    "n_samples": 569,
+    "n_features": 30,
+    "missing_values": 0,
+    "duplicate_rows": 0,
+    "feature_dtypes": [
+      "float64"
+    ],
+    "class_counts": {
+      "malignant": 212,
+      "benign": 357
+    },
+    "class_percent": {
+      "malignant": 37.26,
+      "benign": 62.74
+    },
+    "label_mapping": {
+      "0": "malignant",
+      "1": "benign"
+    }
+  },
+  "split": {
+    "train_size": 455,
+    "test_size": 114,
+    "train_class_counts": {
+      "malignant": 170,
+      "benign": 285
+    },
+    "test_class_counts": {
+      "malignant": 42,
+      "benign": 72
+    }
+  },
+  "adaboost_params": {
+    "learning_rate": 1.0,
+    "n_estimators": 100
+  },
+  "adaboost_cv_accuracy": 0.9802197802197803,
+  "results": [
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.9824561403508771,
+      "Precision": 0.9824561403508771,
+      "Recall": 0.9824561403508771,
+      "F1-score": 0.9824561403508771,
+      "Malignant Recall": 0.9761904761904762,
+      "Malignant Precision": 0.9761904761904762,
+      "CV Acc (mean)": 0.9780219780219781,
+      "CV Acc (std)": 0.009828870230768321,
+      "Fit time (s)": 0.03337770001962781,
+      "Malignant missed (FN)": 1,
+      "Benign flagged (FP)": 1
+    },
+    {
+      "Model": "Decision Tree",
+      "Accuracy": 0.9210526315789473,
+      "Precision": 0.9234172387490467,
+      "Recall": 0.9210526315789473,
+      "F1-score": 0.9215739274819479,
+      "Malignant Recall": 0.9285714285714286,
+      "Malignant Precision": 0.8666666666666667,
+      "CV Acc (mean)": 0.9230769230769231,
+      "CV Acc (std)": 0.012037858406706946,
+      "Fit time (s)": 0.010262600029818714,
+      "Malignant missed (FN)": 3,
+      "Benign flagged (FP)": 6
+    },
+    {
+      "Model": "SVM (RBF)",
+      "Accuracy": 0.9824561403508771,
+      "Precision": 0.9824561403508771,
+      "Recall": 0.9824561403508771,
+      "F1-score": 0.9824561403508771,
+      "Malignant Recall": 0.9761904761904762,
+      "Malignant Precision": 0.9761904761904762,
+      "CV Acc (mean)": 0.9692307692307693,
+      "CV Acc (std)": 0.014578570507056717,
+      "Fit time (s)": 0.025156900053843856,
+      "Malignant missed (FN)": 1,
+      "Benign flagged (FP)": 1
+    },
+    {
+      "Model": "Stacking",
+      "Accuracy": 0.9736842105263158,
+      "Precision": 0.9739686589549538,
+      "Recall": 0.9736842105263158,
+      "F1-score": 0.9737469960380177,
+      "Malignant Recall": 0.9761904761904762,
+      "Malignant Precision": 0.9534883720930233,
+      "CV Acc (mean)": 0.9758241758241759,
+      "CV Acc (std)": 0.01281527888976989,
+      "Fit time (s)": 0.18844420008827,
+      "Malignant missed (FN)": 1,
+      "Benign flagged (FP)": 2
+    },
+    {
+      "Model": "AdaBoost",
+      "Accuracy": 0.956140350877193,
+      "Precision": 0.9568690958164642,
+      "Recall": 0.956140350877193,
+      "F1-score": 0.9557756825927252,
+      "Malignant Recall": 0.9047619047619048,
+      "Malignant Precision": 0.9743589743589743,
+      "CV Acc (mean)": 0.9802197802197803,
+      "CV Acc (std)": 0.01890620937811568,
+      "Fit time (s)": 0.38481429999228567,
+      "Malignant missed (FN)": 4,
+      "Benign flagged (FP)": 1
+    },
+    {
+      "Model": "Hard Voting",
+      "Accuracy": 0.9824561403508771,
+      "Precision": 0.9824561403508771,
+      "Recall": 0.9824561403508771,
+      "F1-score": 0.9824561403508771,
+      "Malignant Recall": 0.9761904761904762,
+      "Malignant Precision": 0.9761904761904762,
+      "CV Acc (mean)": 0.9714285714285715,
+      "CV Acc (std)": 0.011206636293610512,
+      "Fit time (s)": 0.060296099982224405,
+      "Malignant missed (FN)": 1,
+      "Benign flagged (FP)": 1
+    },
+    {
+      "Model": "Soft Voting",
+      "Accuracy": 0.9736842105263158,
+      "Precision": 0.9737105878629081,
+      "Recall": 0.9736842105263158,
+      "F1-score": 0.9736164257756981,
+      "Malignant Recall": 0.9523809523809523,
+      "Malignant Precision": 0.975609756097561,
+      "CV Acc (mean)": 0.9714285714285715,
+      "CV Acc (std)": 0.013186813186813171,
+      "Fit time (s)": 0.05862320004962385,
+      "Malignant missed (FN)": 2,
+      "Benign flagged (FP)": 1
+    }
+  ],
+  "confusion_matrices": {
+    "Logistic Regression": [
+      [
+        41,
+        1
+      ],
+      [
+        1,
+        71
+      ]
+    ],
+    "Decision Tree": [
+      [
+        39,
+        3
+      ],
+      [
+        6,
+        66
+      ]
+    ],
+    "SVM (RBF)": [
+      [
+        41,
+        1
+      ],
+      [
+        1,
+        71
+      ]
+    ],
+    "Stacking": [
+      [
+        41,
+        1
+      ],
+      [
+        2,
+        70
+      ]
+    ],
+    "AdaBoost": [
+      [
+        38,
+        4
+      ],
+      [
+        1,
+        71
+      ]
+    ],
+    "Hard Voting": [
+      [
+        41,
+        1
+      ],
+      [
+        1,
+        71
+      ]
+    ],
+    "Soft Voting": [
+      [
+        40,
+        2
+      ],
+      [
+        1,
+        71
+      ]
+    ]
+  },
+  "settings": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "cv_folds": 5,
+    "average": "weighted"
+  }
+}
